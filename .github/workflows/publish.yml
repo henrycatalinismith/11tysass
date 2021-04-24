@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - trunk
+
+jobs:
+  publish:
+    runs-on: ubuntu-16.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - run: yarn
+
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          registry: https://registry.npmjs.org/
+          token: ${{ secrets.NPM_TOKEN }}
+
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          access: public
+          registry: https://npm.pkg.github.com/
+          token: ${{ secrets.GITHUB_TOKEN }}
+
