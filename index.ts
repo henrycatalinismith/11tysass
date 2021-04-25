@@ -1,12 +1,26 @@
-const { Logger } = require("eazy-logger")
-const fs = require("fs")
-const sass = require("sass")
+import { Logger } from "eazy-logger"
+import fs from "fs"
+import sass from "sass"
 
 const pkg = JSON.parse(fs.readFileSync(`${__dirname}/package.json`, "utf-8"))
 
-module.exports = {
+interface EleventyConfig {
+  addGlobalData: (name: string, fn: () => void) => void
+  addWatchTarget: (name: string) => void
+}
+
+interface Options {
+  files?: {
+    file: string
+    alias?: string
+    outFile?: string
+    outputStyle?: "compressed" | "expanded"
+  }[]
+}
+
+export const sassPlugin = {
   initArguments: {},
-  configFunction: function(eleventyConfig, options) {
+  configFunction: function(eleventyConfig: EleventyConfig, options: Options) {
     const logger = Logger({
       prefix: `[{blue:${pkg.name}}] `,
     })
@@ -15,10 +29,14 @@ module.exports = {
       eleventyConfig.addGlobalData(
         file.alias,
         function() {
-          let css
+          let css: any
           const start = process.hrtime()
 
-          css = sass.renderSync({ file: file.file }).css
+          css = sass.renderSync({
+            file: file.file,
+            outFile: file.outFile,
+            outputStyle: file.outputStyle,
+          }).css
 
           const end = process.hrtime(start)
           const nanoseconds = end[0] * 1e9 + end[1]
