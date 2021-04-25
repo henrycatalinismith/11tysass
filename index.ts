@@ -33,25 +33,32 @@ export const sassPlugin = {
       prefix: `[{blue:${name}}@{blue:${version}}] `,
     })
 
+    function render(file: sass.Options, eleventyInstance: any): sass.Result {
+      const result = sass.renderSync(file)
+      logger.info(`rendered {green:${result.stats.entry}} [{magenta:${result.stats.duration}ms}]`)
+      if (file.outFile) {
+        fs.writeFileSync(
+          `${eleventyInstance.outputDir}/${file.outFile}`,
+          result.css,
+        )
+      }
+      eleventyInstance.eleventyServe.reload()
+      return result
+    }
+
     setImmediate(function() {
       const Eleventy = require(process.cwd() + '/node_modules/@11ty/eleventy/src/Eleventy.js')
+      monkeypatch(Eleventy, function finish(original) {
+        const eleventyInstance = this
+        ;(options.files || []).forEach(function(file) {
+          render(file, eleventyInstance)
+        })
+        return original.apply(this)
+      })
       monkeypatch(Eleventy, function serve(original, port) {
         const eleventyInstance = this
         ;(options.files || []).forEach(function(file) {
-          function render(): sass.Result {
-            const result = sass.renderSync(file)
-            logger.info(`rendered {green:${result.stats.entry}} [{magenta:${result.stats.duration}ms}]`)
-            if (file.outFile) {
-              fs.writeFileSync(
-                `${eleventyInstance.outputDir}/${file.outFile}`,
-                result.css,
-              )
-            }
-            eleventyInstance.eleventyServe.reload()
-            return result
-          }
-
-          const result = render()
+          const result = render(file, eleventyInstance)
 
           if (process.argv.includes("--serve")) {
             const chokidarPaths = [
@@ -71,7 +78,7 @@ export const sassPlugin = {
               chokidarOptions,
             )
             watcher.on("change", function() {
-              render()
+              render(file, eleventyInstance)
             })
           }
         })
