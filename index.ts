@@ -1,59 +1,67 @@
-import { Logger } from "eazy-logger"
-import fs from "fs"
-import sass from "sass"
+/// <reference types="chokidar" />
+/// <reference types="sass" />
 
-const pkg = JSON.parse(fs.readFileSync(`${__dirname}/package.json`, "utf-8"))
+import chokidar from "chokidar"
+import { Logger } from "eazy-logger"
+import sass from "sass"
+import { name, version } from "./package.json"
 
 interface EleventyConfig {
+  addCollection: (name: string, fn: () => any) => void
   addGlobalData: (name: string, fn: () => void) => void
   addWatchTarget: (name: string) => void
 }
 
-interface Options {
-  files?: {
-    file: string
-    alias?: string
-    outFile?: string
-    outputStyle?: "compressed" | "expanded"
-  }[]
+interface PluginOptions {
+  files?: sass.Options[]
 }
 
 export const sassPlugin = {
   initArguments: {},
-  configFunction: function(eleventyConfig: EleventyConfig, options: Options) {
+  configFunction: function(eleventyConfig: EleventyConfig, options: PluginOptions) {
     const logger = Logger({
-      prefix: `[{blue:${pkg.name}}] `,
+      prefix: `[{blue:${name}}@{blue:${version}}] `,
     })
 
-    ;(options.files || []).forEach(file => {
-      eleventyConfig.addGlobalData(
-        file.alias,
-        function() {
-          let css: any
-          const start = process.hrtime()
+    const collection: { [name: string]: sass.Result } = {}
 
-          css = sass.renderSync({
-            file: file.file,
-            outFile: file.outFile,
-            outputStyle: file.outputStyle,
-          }).css
+    eleventyConfig.addCollection("sass", function() {
+      return collection
+    })
 
-          const end = process.hrtime(start)
-          const nanoseconds = end[0] * 1e9 + end[1]
-          const milliseconds = Math.ceil(nanoseconds / 1e6)
-
-          logger.info(`rendered {green:${file.file}} [{magenta:${milliseconds}ms}]`)
-
-          if (file.outFile) {
-            fs.writeFileSync(`./_site/${file.outFile}`, css, "utf-8")
-            logger.info(`wrote {green:${file.outFile}}`)
-          }
-
-          return css
+    setImmediate(function() {
+      ;(options.files || []).forEach(file => {
+        function render(): sass.Result {
+          const result = sass.renderSync(file)
+          logger.info(`rendered {green:${result.stats.entry}} [{magenta:${result.stats.duration}ms}]`)
+          collection[result.stats.entry] = result
+          return result
         }
-      )
 
-      eleventyConfig.addWatchTarget("style.scss")
+        const result = render()
+
+        if (process.argv.includes("--serve")) {
+          const chokidarPaths = [
+            file.file,
+            ...result.stats.includedFiles,
+          ]
+          const chokidarOptions: chokidar.WatchOptions = {
+            awaitWriteFinish: {
+              stabilityThreshold: 128,
+              pollInterval: 128,
+            },
+            persistent: true,
+          }
+          logger.info(`watching {magenta:${chokidarPaths.length}} files`)
+          const watcher = chokidar.watch(
+            chokidarPaths,
+            chokidarOptions,
+          )
+          watcher.on("change", function() {
+            render()
+          })
+        }
+      })
     })
   }
 }

@@ -9,6 +9,7 @@
     "module": "commonjs",
     "noImplicitUseStrict": true,
     "outDir": ".",
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "target": "es5"
   },
