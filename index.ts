@@ -41,6 +41,7 @@ export const sassPlugin = {
         const result = render()
 
         if (process.argv.includes("--serve")) {
+          eleventyConfig.addWatchTarget(file.file)
           const chokidarPaths = [
             file.file,
             ...result.stats.includedFiles,
