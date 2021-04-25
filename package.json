@@ -1,7 +1,7 @@
 {
   "name": "@hendotcat/11tysass",
   "description": "Sass plugin for 11ty",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "CC0-1.0",
   "author": {
     "name": "Henry Catalini Smith",
