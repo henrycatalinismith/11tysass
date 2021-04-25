@@ -15,6 +15,8 @@ jobs:
 
       - run: yarn
 
+      - run: yarn build
+
       - uses: JS-DevTools/npm-publish@v1
         with:
           access: public
