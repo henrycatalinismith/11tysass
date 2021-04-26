@@ -1,7 +1,7 @@
 {
   "name": "@hendotcat/11tysass",
   "description": "Sass plugin for 11ty",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "author": {
     "name": "Henry Catalini Smith",
@@ -13,7 +13,7 @@
     "url": "https://github.com/hendotcat/11tysass.git"
   },
   "dependencies": {
-    "@hendotcat/11tyshim": "^0.0.1",
+    "@hendotcat/11tyshim": "^0.0.3",
     "chokidar": "^3.5.1",
     "eazy-logger": "3.1.0"
   },
