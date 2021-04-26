@@ -5,25 +5,18 @@ import chokidar from "chokidar"
 import { Logger } from "eazy-logger"
 import fs from "fs"
 import sass from "sass"
+import { shimPlugin } from "@hendotcat/11tyshim"
 import { name, version } from "./package.json"
 
 interface EleventyConfig {
   addCollection: (name: string, fn: () => any) => void
   addGlobalData: (name: string, fn: () => void) => void
+  addPlugin: (plugin: any, options: any) => void
   addWatchTarget: (name: string) => void
 }
 
 interface PluginOptions {
   files?: sass.Options[]
-}
-
-function monkeypatch(cls: any, fn: any): any {
-  const orig = cls.prototype[fn.name].__original || cls.prototype[fn.name];
-  function wrapped() {
-    return fn.bind(this, orig).apply(this, arguments);
-  }
-  wrapped.__original = orig;
-  cls.prototype[fn.name] = wrapped;
 }
 
 export const sassPlugin = {
@@ -46,44 +39,41 @@ export const sassPlugin = {
       return result
     }
 
-    setImmediate(function() {
-      const Eleventy = require(process.cwd() + '/node_modules/@11ty/eleventy/src/Eleventy.js')
-      monkeypatch(Eleventy, function finish(original) {
-        const eleventyInstance = this
+    eleventyConfig.addPlugin(shimPlugin, {
+      finish: (eleventyInstance: any) => {
+        console.log(eleventyInstance.config.dir.output)
         ;(options.files || []).forEach(function(file) {
           render(file, eleventyInstance)
         })
-        return original.apply(this)
-      })
-      monkeypatch(Eleventy, function serve(original, port) {
-        const eleventyInstance = this
+      },
+
+      serve: (eleventyInstance: any) => {
         ;(options.files || []).forEach(function(file) {
           const result = render(file, eleventyInstance)
 
-          if (process.argv.includes("--serve")) {
-            const chokidarPaths = [
-              file.file,
-              ...result.stats.includedFiles,
-            ]
-            const chokidarOptions: chokidar.WatchOptions = {
-              awaitWriteFinish: {
-                stabilityThreshold: 128,
-                pollInterval: 128,
-              },
-              persistent: true,
-            }
-            logger.info(`watching {magenta:${chokidarPaths.length}} files`)
-            const watcher = chokidar.watch(
-              chokidarPaths,
-              chokidarOptions,
-            )
-            watcher.on("change", function() {
-              render(file, eleventyInstance)
-            })
+          const chokidarPaths = [
+            file.file,
+            ...result.stats.includedFiles,
+          ]
+          const chokidarOptions: chokidar.WatchOptions = {
+            awaitWriteFinish: {
+              stabilityThreshold: 128,
+              pollInterval: 128,
+            },
+            persistent: true,
           }
+          logger.info(`watching {magenta:${chokidarPaths.length}} files`)
+          const watcher = chokidar.watch(
+            chokidarPaths,
+            chokidarOptions,
+          )
+          watcher.on("change", function() {
+            render(file, eleventyInstance)
+          })
         })
-        return original.apply(this, [port])
-      })
+      },
+
+      verbose: true,
     })
   }
 }
