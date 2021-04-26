@@ -2,7 +2,7 @@
   "name": "@hendotcat/11tysass",
   "description": "Sass plugin for 11ty",
   "version": "0.0.7",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "author": {
     "name": "Henry Catalini Smith",
     "email": "hen@hey.com",
