@@ -17,6 +17,7 @@ interface EleventyConfig {
 
 interface PluginOptions {
   files?: sass.Options[]
+  verbose?: boolean
 }
 
 export const sassPlugin = {
@@ -25,6 +26,12 @@ export const sassPlugin = {
     const logger = Logger({
       prefix: `[{blue:${name}}@{blue:${version}}] `,
     })
+
+    if (!options.verbose) {
+      logger.info = () => {}
+    }
+
+    let chokidarPaths = []
 
     function render(file: sass.Options, eleventyInstance: any): sass.Result {
       const result = sass.renderSync(file)
@@ -35,26 +42,23 @@ export const sassPlugin = {
           result.css,
         )
       }
-      eleventyInstance.eleventyServe.reload()
+
       return result
     }
 
     eleventyConfig.addPlugin(shimPlugin, {
-      finish: (eleventyInstance: any) => {
-        console.log(eleventyInstance.config.dir.output)
+      write: (eleventyInstance: any) => {
         ;(options.files || []).forEach(function(file) {
-          render(file, eleventyInstance)
+          const result = render(file, eleventyInstance)
+          chokidarPaths = [
+            file.file,
+            ...result.stats.includedFiles,
+          ]
         })
       },
 
       serve: (eleventyInstance: any) => {
         ;(options.files || []).forEach(function(file) {
-          const result = render(file, eleventyInstance)
-
-          const chokidarPaths = [
-            file.file,
-            ...result.stats.includedFiles,
-          ]
           const chokidarOptions: chokidar.WatchOptions = {
             awaitWriteFinish: {
               stabilityThreshold: 128,
@@ -69,11 +73,12 @@ export const sassPlugin = {
           )
           watcher.on("change", function() {
             render(file, eleventyInstance)
+            eleventyInstance.eleventyServe.reload()
           })
         })
       },
 
-      verbose: true,
+      verbose: options.verbose,
     })
   }
 }
