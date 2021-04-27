@@ -84,6 +84,15 @@ it'll try to help you understand. For some mistakes that it can recognize,
 it'll print a link in the build output pointing at one of these error codes to
 help you troubleshoot.
 
+### `nothing-to-render`
+
+This error code is generated when you add the plugin to Eleventy without giving 
+it any Sass files to render.
+
+Double check your code against the example at the top of this readme. The
+second argument you pass to `eleventyConfig.addPlugin` should be an object with
+a property called `files`.
+
 ### `missing-file`
 
 This error code is generated when you pass a file to the plugin without a
