@@ -77,6 +77,31 @@ Pass `verbose: true` to the plugin and it'll output a whole bunch of
 information about what it's doing. This is mostly useful for debugging. Please
 enable this this option if you're reporting a bug in `11tysass`.
 
+## Error Codes
+
+11tysass will try to help you set it up properly. If you make a mistake,
+it'll try to help you understand. For some mistakes that it can recognize,
+it'll print a link in the build output pointing at one of these error codes to
+help you troubleshoot.
+
+### `missing-file`
+
+This error code is generated when you pass a file to the plugin without a
+`file` value specified. Without this value, the plugin doesn't know which Sass
+file you want it to render for you.
+
+Double check your code against the example at the top of this readme. Each
+entry in the `files` array should have a line like `file: "style.scss"`.
+
+### `missing-out-file`
+
+This error code is generated when you pass a file to the plugin without an
+`outFile` value specified. Without this value, the plugin can still render
+your Sass, but doesn't know where to write the rendered CSS.
+
+Double check your code against the example at the top of this readme. Each
+entry in the `files` array should have a line like `outFile: "style.css"`.
+
 ## Contributing
 
 <p>
