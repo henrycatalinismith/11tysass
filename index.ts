@@ -6,7 +6,7 @@ import { Logger } from "eazy-logger"
 import fs from "fs"
 import sass from "sass"
 import { shimPlugin } from "@hendotcat/11tyshim"
-import { name, version } from "./package.json"
+import { name, version, homepage } from "./package.json"
 
 interface EleventyConfig {
   addCollection: (name: string, fn: () => any) => void
@@ -31,6 +31,32 @@ export const sassPlugin = {
       logger.info = () => {}
     }
 
+    if (!options || !options.files) {
+      logger.error("{red:error: nothing-to-render}")
+      logger.error("{red:missing a list of Sass files to render}")
+      logger.error("{red:for more details, see:}")
+      logger.error(`{red:${homepage}/#nothing-to-render}`)
+      return
+    }
+
+    for (const file of options.files) {
+      if (!file.file) {
+        logger.error("{red:error: missing-file}")
+        logger.error("{red:missing `file` property on these Sass options}")
+        logger.error("{red:for more details, see:}")
+        logger.error(`{red:${homepage}/#missing-file}`)
+        return
+      }
+
+      if (!file.outFile) {
+        logger.error("{red:error: missing-out-file}")
+        logger.error("{red:missing `outFile` property on these Sass options}")
+        logger.error("{red:for more details, see:}")
+        logger.error(`{red:${homepage}/#missing-out-file}`)
+        return
+      }
+    }
+
     let chokidarPaths = []
 
     function render(
@@ -50,7 +76,6 @@ export const sassPlugin = {
           `${eleventyInstance.outputDir}/${file.outFile}`,
           result.css,
         )
-      } else {
       }
 
       if (file.sourceMap) {
