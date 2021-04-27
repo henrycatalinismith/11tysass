@@ -62,10 +62,10 @@
     "@babel/helper-validator-identifier" "^7.12.11"
     to-fast-properties "^2.0.0"
 
-"@hendotcat/11tyshim@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@hendotcat/11tyshim/-/11tyshim-0.0.3.tgz#2865332c64974b2597d55e6e70eefb31ec336bb4"
-  integrity sha512-3S9gTKpCT0+j6Y1t3bHwpGQvFOJClIDe/C9EIKhYaWxC5wuPtNdrBoTMG8aolAdr+bcsXGVr+6+aGvAHkHuPkg==
+"@hendotcat/11tyshim@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@hendotcat/11tyshim/-/11tyshim-0.0.4.tgz#b03f5e8cebcf0ae3100d2c05f087a35cf52ae634"
+  integrity sha512-0mCE6fc3MHaMB5BunW1UtkEOrCnN9RTk4J7+M8vD7KUXCxiTJwxCbA8Dumx5M+LgODdWLEkjql0V9Ws/lvw66g==
   dependencies:
     eazy-logger "3.1.0"
 
@@ -89,6 +89,13 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.4"
     fastq "^1.6.0"
+
+"@types/fs-extra@^9.0.11":
+  version "9.0.11"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.11.tgz#8cc99e103499eab9f347dbc6ca4e99fb8d2c2b87"
+  integrity sha512-mZsifGG4QeQ7hlkhO56u7zt/ycBgGxSVsFI/6lGTU34VtwkiqrrSDgw0+ygs8kFGWcXnFQWMrzF2h7TtDFNixA==
+  dependencies:
+    "@types/node" "*"
 
 "@types/minimatch@^3.0.3":
   version "3.0.4"
@@ -886,7 +893,7 @@ fs-extra@3.0.1:
     jsonfile "^3.0.0"
     universalify "^0.1.0"
 
-fs-extra@^9.0.1:
+fs-extra@^9.0.1, fs-extra@^9.1.0:
   version "9.1.0"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-9.1.0.tgz#5954460c764a8da2094ba3554bf839e6b9a7c86d"
   integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
