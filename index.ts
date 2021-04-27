@@ -3,7 +3,8 @@
 
 import chokidar from "chokidar"
 import { Logger } from "eazy-logger"
-import fs from "fs"
+import fs from "fs-extra"
+import path from "path"
 import sass from "sass"
 import { shimPlugin } from "@hendotcat/11tyshim"
 import { name, version, homepage } from "./package.json"
@@ -55,6 +56,12 @@ export const sassPlugin = {
         logger.error(`{red:${homepage}/#missing-out-file}`)
         return
       }
+
+      if (file.sourceMap === true) {
+        // Sass accepts a boolean true value for this parameter but that's not
+        // very useful here. So we convert these to a sensible string value.
+        file.sourceMap = `${file.outFile}.map`
+      }
     }
 
     let chokidarPaths = []
@@ -71,19 +78,28 @@ export const sassPlugin = {
       ].join())
 
       if (file.outFile) {
-        logger.info(`wrote {green:${file.outFile}}`)
+        const outFile = path.join(
+          eleventyInstance.outputDir,
+          file.outFile,
+        )
+        fs.ensureDirSync(path.dirname(outFile))
         fs.writeFileSync(
-          `${eleventyInstance.outputDir}/${file.outFile}`,
+          outFile,
           result.css,
         )
+        logger.info(`wrote {green:${file.outFile}}`)
       }
 
       if (file.sourceMap) {
-        logger.info(`wrote {green:${file.sourceMap}}`)
+        const sourceMap = path.join(
+          eleventyInstance.outputDir,
+          file.sourceMap as string,
+        )
         fs.writeFileSync(
-          `${eleventyInstance.outputDir}/${file.sourceMap}`,
+          sourceMap,
           result.map.toString(),
         )
+        logger.info(`wrote {green:${file.sourceMap}}`)
       }
 
       return result
