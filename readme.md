@@ -66,7 +66,7 @@ module.exports = function(eleventyConfig) {
 ### `files`
 
 The `files` array is a list of Sass files for the plugin to compile. Each item
-in the array should be an object of [Sass render options](https://sass-lang.com/documentation/js-api#options).
+in the array should be an object of [Sass render options](https://sass-lang.com/documentation/js-api#options). The following two properties are required for all files.
 
 <table>
   <thead>
