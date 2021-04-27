@@ -33,13 +33,31 @@ export const sassPlugin = {
 
     let chokidarPaths = []
 
-    function render(file: sass.Options, eleventyInstance: any): sass.Result {
+    function render(
+      file: sass.Options,
+      eleventyInstance: any
+    ): sass.Result {
       const result = sass.renderSync(file)
-      logger.info(`rendered {green:${result.stats.entry}} [{magenta:${result.stats.duration}ms}]`)
+
+      logger.info([
+        `rendered {green:${result.stats.entry}}`,
+        `[{magenta:${result.stats.duration}ms}]`
+      ].join())
+
       if (file.outFile) {
+        logger.info(`wrote {green:${file.outFile}}`)
         fs.writeFileSync(
           `${eleventyInstance.outputDir}/${file.outFile}`,
           result.css,
+        )
+      } else {
+      }
+
+      if (file.sourceMap) {
+        logger.info(`wrote {green:${file.sourceMap}}`)
+        fs.writeFileSync(
+          `${eleventyInstance.outputDir}/${file.sourceMap}`,
+          result.map.toString(),
         )
       }
 
