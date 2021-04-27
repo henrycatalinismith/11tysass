@@ -1,8 +1,9 @@
 {
   "name": "@hendotcat/11tysass",
   "description": "Sass plugin for 11ty",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "MIT",
+  "homepage": "https://github.com/hendotcat/11tysass",
   "author": {
     "name": "Henry Catalini Smith",
     "email": "hen@hey.com",
