@@ -67,15 +67,45 @@ module.exports = function(eleventyConfig) {
 
 The `files` array is a list of Sass files for the plugin to compile. Each item
 in the array should be an object of [Sass render options](https://sass-lang.com/documentation/js-api#options).
-If an [`outFile`](https://sass-lang.com/documentation/js-api#outfile) value is
-given, the plugin will write the rendered CSS to that filename inside the
-Eleventy output directory (e.g. `_site/style.css`).
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <a href="https://sass-lang.com/documentation/js-api#file">
+          <code>file</code>
+        </a>
+      </td>
+      <td>
+        This tells Sass which file to render.
+        Yours might be called <code>style.scss</code>.
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="https://sass-lang.com/documentation/js-api#outFile">
+          <code>outFile</code>
+        </a>
+      </td>
+      <td>
+        This tells 11tysass where to save the rendered CSS.
+        You might want to choose <code>style.css</code>.
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ### `verbose`
 
 Pass `verbose: true` to the plugin and it'll output a whole bunch of
 information about what it's doing. This is mostly useful for debugging. Please
-enable this this option if you're reporting a bug in `11tysass`.
+enable this this option if you're reporting a bug in 11tysass.
 
 ## Error Codes
 
@@ -113,12 +143,11 @@ entry in the `files` array should have a line like `outFile: "style.css"`.
 
 ## Contributing
 
-<p>
-  <a href="https://www.contributor-covenant.org/version/2/0/code_of_conduct/">
-    Contributor Covenant v2.0
- </a>
-</p>
+[Contributor Covenant v2.0]
 
 ## License
 
-MIT
+[MIT]
+
+[Contributor Covenant v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct/
+[MIT]: https://opensource.org/licenses/MIT
