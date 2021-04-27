@@ -69,8 +69,18 @@ export const sassPlugin = {
     function render(
       file: sass.Options,
       eleventyInstance: any
-    ): sass.Result {
-      const result = sass.renderSync(file)
+    ): sass.Result | void {
+      let result: sass.Result
+
+      try {
+        result = sass.renderSync(file)
+      } catch (e) {
+        logger.error("{red:Sass error}")
+        e.formatted.split(/\n/).forEach((line: string) => {
+          logger.error(`{red:${line}}`)
+        })
+        return
+      }
 
       logger.info([
         `rendered {green:${result.stats.entry}}`,
@@ -109,6 +119,16 @@ export const sassPlugin = {
       write: (eleventyInstance: any) => {
         ;(options.files || []).forEach(function(file) {
           const result = render(file, eleventyInstance)
+          if (!result) {
+            // The very first Sass render attempt has failed. For one-off
+            // builds this is fatal: the site isn't buildable. For dev server
+            // builds it's also unrecoverable as it stops us retrieving a list
+            // of included files to watch. So for both cases killing the
+            // process immediately is the only thing we can do to help the
+            // user. Doing so puts the Sass error message right at the end of
+            // the Eleventy output where it's most visible.
+            process.exit(-1)
+          }
           chokidarPaths = [
             file.file,
             ...result.stats.includedFiles,
