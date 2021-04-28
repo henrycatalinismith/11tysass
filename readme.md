@@ -74,6 +74,14 @@ module.exports = function(eleventyConfig) {
 />
 ```
 
+Or if you prefer your CSS inline:
+
+```html
+<style>
+  {{ collections["11tysass"]["style.scss"].css | safe }}
+</style>
+```
+
 ## Options
 
 ### `files`
