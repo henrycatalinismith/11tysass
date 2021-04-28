@@ -19,25 +19,25 @@
   />
 </p>
 
-11tysass is a Sass plugin for Eleventy that doesn't do very much. If you're
-looking for an Eleventy Sass plugin that does lots for you, you should probably
-try [`eleventy-plugin-sass`](https://github.com/Sonaryr/eleventy-plugin-sass)
-instead.
+11tysass is a [Sass] plugin for [Eleventy]. At the start of an Eleventy build,
+it renders your Sass files and writes the CSS to your `_site` directory. In the
+Eleventy dev server, it watches all the [`includePaths`][includePaths] in your
+Sass file, re-renders it when they change, and reloads the dev server.
 
-This plugin passes its options directly to Sass. It only adds a very small
-amount of extra glue on top of that to integrate Eleventy and Sass.
+Other Sass plugins for Eleventy such as
+[`eleventy-plugin-sass`][eleventy-plugin-sass] and
+[`eleventy-plugin-scss`][eleventy-plugin-scss] focus much of their attention on
+adding various CSS post-processors to productionize the rendered CSS output of
+your Sass files. What's different about 11tysass is that it leaves those
+decisions entirely to you: you set up your own post-processing using the
+[`plugins`][#plugins] option.
 
-One extra thing this plugin does is that it writes your rendered CSS to disk
-for you. Sass on its own won't do this, but if you provide an `outFile` value
-for your Sass file, the plugin will combine that with your Eleventy output
-directory name and put your CSS into your built site.
-
-The other extra thing it does is in the Eleventy dev server. When Sass builds
-a file, one of the details it returns in the [result object](https://sass-lang.com/documentation/js-api#result-object)
-is a [list of all files imported](https://sass-lang.com/documentation/js-api#result-object)
-by the source file. When you run the Eleventy dev server, after this plugin's
-first run on startup, it watches all those files. When they change, it
-rebuilds the CSS file and reloads the Eleventy server.
+Instead, 11tysass focuses the majority of its attention on being as robust an
+integration between Eleventy and Sass as possible. Instead of introducing its
+own config schema, it tries to make as careful use as possible of Eleventy's
+and Sass's own options and fill in the gaps itself where necessary. Most of the
+code in this plugin is concerned with handling different kinds of errors as
+gracefully as possible and printing the most useful error messages possible.
 
 ## Installation
 
@@ -101,6 +101,34 @@ in the array should be an object of [Sass render options](https://sass-lang.com/
   </tbody>
 </table>
 
+### `plugins`
+
+The `plugins` array is an optional series of transforms to apply to the
+rendered CSS. Rather than bundle an opinionated set of CSS post-processing
+tools, 11tysass provides this flexible extension point so that you can choose
+your own.
+
+```javascript
+const { sassPlugin } = require("@hendotcat/11tysass")
+const autoprefixer = require("autoprefixer")
+const postcss = require("postcss")
+
+module.exports = function(eleventyConfig) {
+  eleventyConfig.addPlugin(sassPlugin, {
+    files: [{
+      file: "style.scss",
+      outFile: "style.css",
+      outputStyle: "compressed",
+    }],
+    plugins: [
+      css => postcss([autoprefixer]).process(css).css,
+    ],
+  })
+}
+```
+
+## Options
+
 ### `verbose`
 
 Pass `verbose: true` to the plugin and it'll output a whole bunch of
@@ -141,6 +169,13 @@ your Sass, but doesn't know where to write the rendered CSS.
 Double check your code against the example at the top of this readme. Each
 entry in the `files` array should have a line like `outFile: "style.css"`.
 
+### `plugin-error`
+
+This error code is generated when one of your [`plugins`][#plugins] throws an
+error while processing your rendered CSS. This errors aren't bugs in 11tysass,
+but rather some kind of problem with your CSS post-processing code. If you get
+stuck, it's okay to open an issue here anyway and ask for help!
+
 ## Contributing
 
 [Contributor Covenant v2.0]
@@ -149,5 +184,12 @@ entry in the `files` array should have a line like `outFile: "style.css"`.
 
 [MIT]
 
+[eleventy-plugin-sass]: https://github.com/Sonaryr/eleventy-plugin-sass
+[eleventy-plugin-scss]: https://github.com/jamshop/eleventy-plugin-scss
+[sass.Result]: https://sass-lang.com/documentation/js-api#result-object
+[includePaths]: https://sass-lang.com/documentation/js-api#includepaths
+[Sass]: https://sass-lang.com/
+[Eleventy]: https://www.11ty.dev/
+[PostCSS]: https://postcss.org
 [Contributor Covenant v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct/
 [MIT]: https://opensource.org/licenses/MIT
