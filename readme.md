@@ -30,7 +30,7 @@ Other Sass plugins for Eleventy such as
 adding various CSS post-processors to productionize the rendered CSS output of
 your Sass files. What's different about 11tysass is that it leaves those
 decisions entirely to you: you set up your own post-processing using the
-[`plugins`][#plugins] option.
+[`plugins`](#plugins) option.
 
 Instead, 11tysass focuses the majority of its attention on being as robust an
 integration between Eleventy and Sass as possible. Instead of introducing its
@@ -171,7 +171,7 @@ entry in the `files` array should have a line like `outFile: "style.css"`.
 
 ### `plugin-error`
 
-This error code is generated when one of your [`plugins`][#plugins] throws an
+This error code is generated when one of your [`plugins`](#plugins) throws an
 error while processing your rendered CSS. This errors aren't bugs in 11tysass,
 but rather some kind of problem with your CSS post-processing code. If you get
 stuck, it's okay to open an issue here anyway and ask for help!
