@@ -68,7 +68,10 @@ module.exports = function(eleventyConfig) {
 ### Template Code
 
 ```html
-<link rel="stylesheet" href="{{ collections["11tysass"]["style.scss"].outFile }}" />
+<link
+  rel="stylesheet"
+  href="{{ collections["11tysass"]["style.scss"].stats.entry }}"
+/>
 ```
 
 ## Options
