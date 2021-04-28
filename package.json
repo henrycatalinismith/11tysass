@@ -1,7 +1,7 @@
 {
   "name": "@hendotcat/11tysass",
   "description": "Sass plugin for 11ty",
-  "version": "0.0.15",
+  "version": "1.0.0",
   "license": "MIT",
   "homepage": "https://github.com/hendotcat/11tysass",
   "author": {
