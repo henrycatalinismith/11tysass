@@ -18,6 +18,7 @@ interface EleventyConfig {
 
 interface PluginOptions {
   files?: sass.Options[]
+  plugins?: ((css: string) => string)[]
   verbose?: boolean
 }
 
@@ -82,6 +83,21 @@ export const sassPlugin = {
         return
       }
 
+      let css = result.css.toString()
+
+      ;(options.plugins || []).forEach(function(plugin) {
+        try {
+          css = plugin(css)
+        } catch(e) {
+          logger.error("{red:error: plugin-error}")
+          e.stack.split(/\n/).forEach((line: string) => {
+            logger.error(`{red:${line}}`)
+          })
+          logger.error("{red:for more details, see:}")
+          logger.error(`{red:${homepage}/#plugin-error}`)
+        }
+      })
+
       logger.info([
         `rendered {green:${result.stats.entry}}`,
         `[{magenta:${result.stats.duration}ms}]`
@@ -95,7 +111,7 @@ export const sassPlugin = {
         fs.ensureDirSync(path.dirname(outFile))
         fs.writeFileSync(
           outFile,
-          result.css,
+          css,
         )
         logger.info(`wrote {green:${file.outFile}}`)
       }
