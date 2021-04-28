@@ -21,8 +21,9 @@
 
 11tysass is a [Sass] plugin for [Eleventy]. At the start of an Eleventy build,
 it renders your Sass files and writes the CSS to your `_site` directory. In the
-Eleventy dev server, it watches all the [`includedFiles`][includedFiles] in your
-Sass file, re-renders your CSS when they change, and reloads the dev server.
+Eleventy dev server, it watches your Sass file and all its
+[`includedFiles`][includedFiles], re-renders your CSS when any of them change,
+and reloads the dev server.
 
 Other Sass plugins for Eleventy such as
 [`eleventy-plugin-sass`][eleventy-plugin-sass] and
