@@ -21,7 +21,7 @@
 
 11tysass is a [Sass] plugin for [Eleventy]. At the start of an Eleventy build,
 it renders your Sass files and writes the CSS to your `_site` directory. In the
-Eleventy dev server, it watches all the [`includePaths`][includePaths] in your
+Eleventy dev server, it watches all the [`includedFiles`][includedFiles] in your
 Sass file, re-renders your CSS when they change, and reloads the dev server.
 
 Other Sass plugins for Eleventy such as
@@ -202,7 +202,7 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [eleventy-plugin-scss]: https://github.com/jamshop/eleventy-plugin-scss
 [sass.Options]: https://sass-lang.com/documentation/js-api#options
 [sass.Result]: https://sass-lang.com/documentation/js-api#result-object
-[includePaths]: https://sass-lang.com/documentation/js-api#includepaths
+[includedFiles]: https://sass-lang.com/documentation/js-api#result-stats-includedfiles
 [Sass]: https://sass-lang.com/
 [Eleventy]: https://www.11ty.dev/
 [PostCSS]: https://postcss.org
