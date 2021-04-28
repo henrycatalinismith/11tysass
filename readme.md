@@ -108,6 +108,10 @@ rendered CSS. Rather than bundle an opinionated set of CSS post-processing
 tools, 11tysass provides this flexible extension point so that you can choose
 your own.
 
+Each item in the array should be a function that accepts a CSS string and
+returns another CSS string. Here's an example using [PostCSS] and
+[Autoprefixer] to post-process the rendered CSS output from Sass.
+
 ```javascript
 const { sassPlugin } = require("@hendotcat/11tysass")
 const autoprefixer = require("autoprefixer")
@@ -191,5 +195,6 @@ stuck, it's okay to open an issue here anyway and ask for help!
 [Sass]: https://sass-lang.com/
 [Eleventy]: https://www.11ty.dev/
 [PostCSS]: https://postcss.org
+[Autoprefixer]: https://autoprefixer.github.io
 [Contributor Covenant v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct/
 [MIT]: https://opensource.org/licenses/MIT
