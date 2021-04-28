@@ -1,7 +1,7 @@
 {
   "name": "@hendotcat/11tysass",
   "description": "Sass plugin for 11ty",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "license": "MIT",
   "homepage": "https://github.com/hendotcat/11tysass",
   "author": {
@@ -17,11 +17,13 @@
     "@hendotcat/11tyshim": "^0.0.4",
     "chokidar": "^3.5.1",
     "eazy-logger": "3.1.0",
-    "fs-extra": "^9.1.0"
+    "fs-extra": "^9.1.0",
+    "lodash.debounce": "^4.0.8"
   },
   "devDependencies": {
     "@11ty/eleventy": "11ty/eleventy#v1.0.0-canary.10",
     "@types/fs-extra": "^9.0.11",
+    "@types/lodash.debounce": "^4.0.6",
     "@types/node": "^14.14.41",
     "@types/sass": "^1.16.0",
     "sass": "^1.32.11",
