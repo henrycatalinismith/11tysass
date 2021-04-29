@@ -201,6 +201,7 @@ export const sassPlugin = {
     })
 
     eleventyConfig.addPlugin(rehypePlugin, {
+      id: name,
       plugins: [
         [() => {
           return function(tree: any) {

@@ -63,10 +63,10 @@
     "@babel/helper-validator-identifier" "^7.12.11"
     to-fast-properties "^2.0.0"
 
-"@hendotcat/11tyhype@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@hendotcat/11tyhype/-/11tyhype-0.0.3.tgz#339f600245c274986b04fc2091296592bf00b49b"
-  integrity sha512-1kiVVm+ISTdIYVEZLlN4WCX0YBSv/C+/6POcpbDm6wNzl/hQOZqSA5th1JrUNfVGX1FQwoa039vRv9WzutG5Tw==
+"@hendotcat/11tyhype@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@hendotcat/11tyhype/-/11tyhype-0.0.4.tgz#70f361afb12d1718cff0b08da9ccb4ad8d1bbfa9"
+  integrity sha512-oGxkOfCe4C2KKltdncbThuWmHNXlT1n3iI0EvTH+elsPcI98NuatNginV5bO4k854H3UBR6cYstvL99bovPOgw==
   dependencies:
     eazy-logger "3.1.0"
 
