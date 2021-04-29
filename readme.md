@@ -69,18 +69,13 @@ module.exports = function(eleventyConfig) {
 ### Template Code
 
 ```html
-<link
-  rel="stylesheet"
-  href="{{ collections["11tysass"]["style.scss"].stats.entry }}"
-/>
+<link rel="stylesheet" href="style.scss" />
 ```
 
 Or if you prefer your CSS inline:
 
 ```html
-<style>
-  {{ collections["11tysass"]["style.scss"].css | safe }}
-</style>
+<style data-src="style.scss"></style>
 ```
 
 ## Options
