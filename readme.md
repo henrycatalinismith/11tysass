@@ -169,15 +169,6 @@ file you want it to render for you.
 Double check your code against the example at the top of this readme. Each
 entry in the `files` array should have a line like `file: "style.scss"`.
 
-### `missing-out-file`
-
-This error code is generated when you pass a file to the plugin without an
-`outFile` value specified. Without this value, the plugin can still render
-your Sass, but doesn't know where to write the rendered CSS.
-
-Double check your code against the example at the top of this readme. Each
-entry in the `files` array should have a line like `outFile: "style.css"`.
-
 ### `plugin-error`
 
 This error code is generated when one of your [`plugins`](#plugins) throws an
