@@ -19,28 +19,20 @@
   />
 </p>
 
-11tysass is a [Sass] plugin for [Eleventy]. At the start of an Eleventy build,
-it renders your Sass files and writes the CSS to your `_site` directory. In the
-Eleventy dev server, it watches your Sass file and all its
-[`includedFiles`][includedFiles], re-renders your CSS when any of them change,
-and reloads the dev server.
+11tysass is a [Sass] plugin for [Eleventy] that's easy to configure but
+flexible enough for production. Most of the code in this plugin is dedicated to
+error handling: doing the right thing when something goes wrong and printing
+as useful an error message as possible to help you fix it.
 
-Other Sass plugins for Eleventy such as
-[`eleventy-plugin-sass`][eleventy-plugin-sass] and
-[`eleventy-plugin-scss`][eleventy-plugin-scss] focus much of their attention on
-adding various CSS post-processors to productionize the rendered CSS output of
-your Sass files. What's different about 11tysass is that it leaves those
-decisions entirely to you. Post-processing needs vary a lot from project to
-project, so 11tysass lets you set up your own post-processing using the
-[`plugins`](#plugins) option, or not set up any at all if Sass is all you need.
+## Features
 
-Instead, 11tysass focuses the majority of its attention on being as robust an
-integration between Eleventy and Sass as possible. Instead of introducing its
-own config schema, it tries to make as careful use as possible of Eleventy's
-and Sass's own data structures and fill in the gaps itself where necessary.
-Most of the code in this plugin is concerned with handling different kinds of
-errors as gracefully as possible and printing the most useful error messages
-possible.
+* Loading CSS via `<link rel="stylesheet" />`
+* Inline CSS in `<style>` tags
+* Hot reload support for either of the above CSS loading techniques
+* Simple config using [plain old Sass options][sass.Options]
+* Cache-busting with content hashing
+* Customizable post-processing (none by default)
+* Multiple Sass entrypoints
 
 ## Installation
 
@@ -51,6 +43,10 @@ yarn add -D @hendotcat/11tysass
 ## Usage
 
 ### Eleventy Config
+
+This is the smallest possible production-ready example. It enables
+cache-busting to guarantee that your visitors will get your updated CSS as soon
+as you deploy it, and it uses Sass's own output compression for minification.
 
 ```javascript
 const { sassPlugin } = require("@hendotcat/11tysass")
@@ -72,7 +68,13 @@ module.exports = function(eleventyConfig) {
 <link rel="stylesheet" href="style.scss" />
 ```
 
-Or if you prefer your CSS inline:
+Note that the `href` value here references the Sass entrypoint source file
+rather than the CSS output. 11tysass injects the cache-bust URL with the
+content hash for you.
+
+If you prefer your CSS inline, add a `<style>` tag with a `data-src` attribute
+like this. 11tysass will inject the rendered CSS into the tag and remove the
+data attribute for you.
 
 ```html
 <style data-src="style.scss"></style>
@@ -204,3 +206,4 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [Autoprefixer]: https://autoprefixer.github.io
 [Contributor Covenant v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct/
 [MIT]: https://opensource.org/licenses/MIT
+
