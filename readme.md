@@ -89,19 +89,27 @@ Or if you prefer your CSS inline:
 
 The `files` array is a list of Sass files for the plugin to compile. Each item
 in the array should be an object of [Sass render options][sass.Options]. The
-following two properties are required for all files, but you can pass other
+following two properties are the most important, but you can pass other
 Sass options alongside them as well if you have specific Sass configuration
-needs. 
+needs.
 
 #### `file`
 
-This tells Sass which file to render. It's specific to your project: it's a name you choose, not 11tysass. Yours might be called `style.scss`.
+This value is required. It tells Sass which file to render. It's specific to
+your project: it's a name you choose, not 11tysass. Yours might be called
+`style.scss`.
 
 #### `outFile`
 
 This tells 11tysass where to save the rendered CSS.
 This is project-specific just like [`file`](#file).
 You might want to choose `style.css` if you're not sure.
+
+If you're going to load your rendered CSS via a `<style>` tag instead of a
+`<link>` tag, you can leave this value out. 11tysass doesn't need to write a
+CSS file to your `_site` directory if nothing's going to load it. But if you
+want to use a `<link>` tag to load your CSS, then you need to provide an
+`outFile` value so that there's a file to load.
 
 If you need a content hash in this filename for cache-busting purposes,
 11tysass supports that. The usage example at the top of the readme shows an
