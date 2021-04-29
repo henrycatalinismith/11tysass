@@ -7,7 +7,9 @@ import fs from "fs-extra"
 import debounce from "lodash.debounce"
 import path from "path"
 import sass from "sass"
+import { selectAll } from "hast-util-select"
 import { shimPlugin } from "@hendotcat/11tyshim"
+import { rehypePlugin } from "@hendotcat/11tyhype"
 import { name, version, homepage } from "./package.json"
 
 interface EleventyConfig {
@@ -76,11 +78,6 @@ export const sassPlugin = {
         }
       }
     })
-
-    eleventyConfig.addCollection(
-      "11tysass",
-      () => results
-    )
 
     function render(
       file: sass.Options,
@@ -199,6 +196,45 @@ export const sassPlugin = {
           )
         })
       },
+
+      verbose: options.verbose,
+    })
+
+    eleventyConfig.addPlugin(rehypePlugin, {
+      plugins: [
+        [() => {
+          return function(tree: any) {
+
+            Object.entries(results).forEach(([name, result]) => {
+              const selector = [
+                "link",
+                "[rel='stylesheet']",
+                `[href='${name}']`,
+              ].join("")
+              const matches = selectAll(selector, tree)
+              matches.forEach((link: any) => {
+                link.properties.href = result.stats.entry
+              })
+            })
+
+            Object.entries(results).forEach(([name, result]) => {
+              const selector = [
+                "style",
+                `[data-src='${name}']`,
+              ].join("")
+              const matches = selectAll(selector, tree)
+              matches.forEach((style: any) => {
+                delete style.properties.dataSrc
+                style.children = [{
+                  type: "text",
+                  value: result.css,
+                }]
+              })
+            })
+
+          }
+        }],
+      ],
 
       verbose: options.verbose,
     })
