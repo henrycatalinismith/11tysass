@@ -40,7 +40,7 @@ export const sassPlugin = {
       logger.error("{red:missing a list of Sass files to render}")
       logger.error("{red:for more details, see:}")
       logger.error(`{red:${homepage}/#nothing-to-render}`)
-      return
+      process.exit(-1)
     }
 
     for (const file of options.files) {
@@ -49,18 +49,10 @@ export const sassPlugin = {
         logger.error("{red:missing `file` property on these Sass options}")
         logger.error("{red:for more details, see:}")
         logger.error(`{red:${homepage}/#missing-file}`)
-        return
+        process.exit(-1)
       }
 
-      if (!file.outFile) {
-        logger.error("{red:error: missing-out-file}")
-        logger.error("{red:missing `outFile` property on these Sass options}")
-        logger.error("{red:for more details, see:}")
-        logger.error(`{red:${homepage}/#missing-out-file}`)
-        return
-      }
-
-      if (file.sourceMap === true) {
+      if (file.sourceMap === true && file.outFile) {
         // Sass accepts a boolean true value for this parameter but that's not
         // very useful here. So we convert these to a sensible string value.
         file.sourceMap = `${file.outFile}.map`
@@ -89,8 +81,6 @@ export const sassPlugin = {
       "11tysass",
       () => results
     )
-
-    let chokidarPaths = []
 
     function render(
       file: sass.Options,
@@ -185,14 +175,6 @@ export const sassPlugin = {
             // user. Doing so puts the Sass error message right at the end of
             // the Eleventy output where it's most visible.
             process.exit(-1)
-          } else if (result && writeCount === 0) {
-            // This is the very first Sass build and it's succeeded. We need
-            // to remember the includedFiles for later in case we need to watch
-            // them.
-            chokidarPaths = [
-              file.file,
-              ...result.stats.includedFiles,
-            ]
           }
           writeCount += 1
         })
@@ -200,6 +182,7 @@ export const sassPlugin = {
 
       serve: (eleventyInstance: any) => {
         options.files.forEach(function(file) {
+          const chokidarPaths = results[file.file].stats.includedFiles
           logger.info(`watching {magenta:${chokidarPaths.length}} files`)
           const watcher = chokidar.watch(
             chokidarPaths,
