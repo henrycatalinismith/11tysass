@@ -37,7 +37,7 @@ as useful an error message as possible to help you fix it.
 ## Installation
 
 ```
-yarn add -D @hendotcat/11tysass
+yarn add -D @hendotcat/11tysass sass
 ```
 
 ## Usage
