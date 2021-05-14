@@ -21,8 +21,9 @@
 
 11tysass is a [Sass] plugin for [Eleventy] that's easy to configure but
 flexible enough for production. Most of the code in this plugin is dedicated to
-error handling: doing the right thing when something goes wrong and printing
-as useful an error message as possible to help you fix it.
+quality assurance and error handling: avoiding bugs, doing the right thing when
+something goes wrong, and printing as useful an error message as possible to
+help you fix it.
 
 ## Features
 
