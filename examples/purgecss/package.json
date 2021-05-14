@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "purgecss": "^4.0.3",
+    "sass": "^1.32.11"
+  }
+}
