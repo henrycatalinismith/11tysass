@@ -150,6 +150,15 @@ Pass `verbose: true` to the plugin and it'll output a whole bunch of
 information about what it's doing. This is mostly useful for debugging. Please
 enable this this option if you're reporting a bug in 11tysass.
 
+### `onInjectInline`
+
+This is an advanced feature: skip this if you're just getting started. It's an
+optional function you can pass to 11tysass to post-process inline `<style>`
+tags on a per-page basis. This is useful if you want to run something like
+[PurgeCSS] on them. The function receives two string parameters: the CSS being
+injected into the page, and the HTML source code of the page. There's an
+[example PurgeCSS setup][onInjectInline] you can check out if you're curious.
+
 ## Error Codes
 
 11tysass will try to help you set it up properly. If you make a mistake,
@@ -204,7 +213,9 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [Sass]: https://sass-lang.com/
 [Eleventy]: https://www.11ty.dev/
 [PostCSS]: https://postcss.org
+[PurgeCSS]: https://purgecss.com
 [Autoprefixer]: https://autoprefixer.github.io
 [Contributor Covenant v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct/
 [MIT]: https://opensource.org/licenses/MIT
+[onInjectInline]: https://github.com/hendotcat/11tysass/blob/trunk/examples/link-tag/.eleventy.js
 
