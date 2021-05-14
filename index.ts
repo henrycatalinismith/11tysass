@@ -7,6 +7,7 @@ import fs from "fs-extra"
 import debounce from "lodash.debounce"
 import path from "path"
 import sass from "sass"
+import toHtml from "hast-util-to-html"
 import { selectAll } from "hast-util-select"
 import { shimPlugin } from "@hendotcat/11tyshim"
 import { rehypePlugin } from "@hendotcat/11tyhype"
@@ -21,6 +22,7 @@ interface PluginOptions {
   files?: sass.Options[]
   plugins?: ((css: string) => string)[]
   verbose?: boolean
+  onInjectInline?: (css: string, html: string) => string | Promise<string>
 }
 
 export const sassPlugin = {
@@ -204,9 +206,10 @@ export const sassPlugin = {
       id: name,
       plugins: [
         [() => {
-          return function(tree: any) {
+          return async function(tree: any) {
+            const entries = Object.entries(results)
 
-            Object.entries(results).forEach(([name, result]) => {
+            entries.forEach(([name, result]) => {
               const selector = [
                 "link",
                 "[rel='stylesheet']",
@@ -218,21 +221,24 @@ export const sassPlugin = {
               })
             })
 
-            Object.entries(results).forEach(([name, result]) => {
+            await Promise.all(entries.map(async ([name, result]) => {
               const selector = [
                 "style",
                 `[data-src='${name}']`,
               ].join("")
               const matches = selectAll(selector, tree)
-              matches.forEach((style: any) => {
+              await Promise.all(matches.map(async (style: any) => {
                 delete style.properties.dataSrc
+                let css = result.css.toString()
+                if (options.onInjectInline) {
+                  css = await options.onInjectInline(css, toHtml(tree))
+                }
                 style.children = [{
                   type: "text",
-                  value: result.css,
+                  value: css,
                 }]
-              })
-            })
-
+              }))
+            }))
           }
         }],
       ],
