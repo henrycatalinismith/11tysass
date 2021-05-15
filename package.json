@@ -1,7 +1,7 @@
 {
   "name": "@hendotcat/11tysass",
   "description": "Sass plugin for 11ty",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "license": "MIT",
   "homepage": "https://github.com/hendotcat/11tysass",
   "author": {
@@ -44,8 +44,9 @@
     "watch": "tsc --watch"
   },
   "files": [
-    "index.d.ts",
-    "index.js"
+    "11tysass.d.ts",
+    "11tysass.js"
   ],
-  "types": "index.d.ts"
+  "main": "11tysass.js",
+  "types": "11tysass.d.ts"
 }
