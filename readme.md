@@ -217,5 +217,5 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [Autoprefixer]: https://autoprefixer.github.io
 [Contributor Covenant v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct/
 [MIT]: https://opensource.org/licenses/MIT
-[onInjectInline]: https://github.com/hendotcat/11tysass/blob/trunk/examples/link-tag/.eleventy.js
+[onInjectInline]: https://github.com/hendotcat/11tysass/blob/trunk/examples/purgecss/.eleventy.js
 
