@@ -199,7 +199,8 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 
 ## Contributing
 
-[Contributor Covenant v2.0]
+* [Tips][Contributing]
+* [Code of Conduct]
 
 ## License
 
@@ -215,7 +216,8 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [PostCSS]: https://postcss.org
 [PurgeCSS]: https://purgecss.com
 [Autoprefixer]: https://autoprefixer.github.io
-[Contributor Covenant v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct/
-[MIT]: https://opensource.org/licenses/MIT
+[Contributing]: https://github.com/hendotcat/11tysass/blob/trunk/contributing.md
+[Code of Conduct]: https://github.com/hendotcat/11tysass/blob/trunk/code_of_conduct.md
+[MIT]: https://github.com/hendotcat/11tysass/blob/trunk/license
 [onInjectInline]: https://github.com/hendotcat/11tysass/blob/trunk/examples/purgecss/.eleventy.js
 
