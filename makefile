@@ -1,5 +1,6 @@
 SHELL := /bin/bash
 
+errors_txt := $(wildcard errors/*/error.txt)
 examples_pkg := $(wildcard examples/*/package.json)
 examples_dst := $(subst package.json,_site,examples/*/package.json)
 examples_npm := $(subst package.json,node_modules,$(examples_npm))
@@ -11,13 +12,39 @@ examples_npm := $(subst package.json,node_modules,$(examples_npm))
 clean:
 	rm -f 11tysass.d.ts
 	rm -f 11tysass.js
-	rm -rf examples/*/_site
 
 .PHONY: distclean
 distclean: clean
+	rm -rf errors/*/node_modules
 	rm -rf examples/*/node_modules
+	rm -rf node_modules
 
-.PHONY:
+.PHONY: errors
+errors: errors_before $(errors_txt)
+
+.PHONY: errors_before
+errors_before:
+	rm -f errors/*/error.txt
+
+errors/%/error.txt: errors/%/node_modules
+	- cd errors/$*; yarn eleventy | grep @hendotcat/11tysass | grep -v "  at " | awk '{$$1=""}1' | grep -v "rendered style" > error.txt
+	@if [[ `git status --porcelain errors/$*/error.txt` ]]; then \
+		git --no-pager diff errors/$*/error.txt; \
+		git clean -df errors; \
+		git checkout -- errors; \
+		exit -1; \
+	fi
+
+errors/%/node_modules:
+	cd errors/$* && yarn --pure-lockfile
+
+.PHONY: examples
+examples: examples_before $(examples_dst)
+
+.PHONY: examples_before
+examples_before:
+	rm -rf examples/*/_site
+
 examples/%/_site: examples/%/node_modules
 	cd examples/$* && yarn eleventy
 	@if [[ `git status --porcelain examples/$*/_site` ]]; then \
@@ -34,5 +61,5 @@ node_modules:
 	yarn
 
 .PHONY: test
-test: clean 11tysass.js $(examples_dst)
+test: clean 11tysass.js errors examples
 	

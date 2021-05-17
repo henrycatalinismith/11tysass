@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "postcss": "^8.2.15",
+    "sass": "^1.32.11"
+  }
+}
