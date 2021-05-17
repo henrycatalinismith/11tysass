@@ -1,0 +1,4 @@
+ error: plugin-error
+ Error: ⛔️ This should be a PostCSS plugin is not a PostCSS plugin
+ for more details, see:
+ https://github.com/hendotcat/11tysass/#plugin-error

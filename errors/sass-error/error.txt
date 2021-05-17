@@ -1,0 +1,9 @@
+ error sass-error
+ Error: expected ":".
+ ╷
+ 2 │ $size 16px;
+ │ ^
+ ╵
+ style.scss 2:7 root stylesheet
+ for more details, see:
+ https://github.com/hendotcat/11tysass/#sass-error
