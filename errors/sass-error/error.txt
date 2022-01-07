@@ -6,4 +6,4 @@
  ╵
  style.scss 2:7 root stylesheet
  for more details, see:
- https://github.com/hendotcat/11tysass/#sass-error
+ https://github.com/henrycatalinismith/11tysass/#sass-error

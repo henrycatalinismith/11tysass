@@ -3,7 +3,7 @@
   "description": "Sass plugin for 11ty",
   "version": "3.0.1",
   "license": "MIT",
-  "homepage": "https://github.com/hendotcat/11tysass",
+  "homepage": "https://github.com/henrycatalinismith/11tysass",
   "author": {
     "name": "Henry Catalini Smith",
     "email": "smith@hen.cat",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hendotcat/11tysass.git"
+    "url": "https://github.com/henrycatalinismith/11tysass.git"
   },
   "dependencies": {
     "@hendotcat/11tyhype": "^2.0.0",

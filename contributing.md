@@ -24,4 +24,4 @@ something that actually needs to change existing behavior then you can run
 `yarn eleventy` in any of the examples that need updating and commit those
 changes to avoid these errors.
 
-[examples]: https://github.com/hendotcat/11tysass/tree/trunk/examples
+[examples]: https://github.com/henrycatalinismith/11tysass/tree/trunk/examples

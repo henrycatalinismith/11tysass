@@ -1,7 +1,7 @@
 <p align="center">
   <img
     alt="11tysass"
-    src="https://github.com/hendotcat/11tysass/raw/trunk/11tysass.svg"
+    src="https://github.com/henrycatalinismith/11tysass/raw/trunk/11tysass.svg"
     height="64"
   />
 </p>
@@ -14,7 +14,7 @@
 
 <p align="center">
   <img
-    src="https://github.com/hendotcat/11tysass/actions/workflows/publish.yml/badge.svg"
+    src="https://github.com/henrycatalinismith/11tysass/actions/workflows/publish.yml/badge.svg"
     alt="Build status"
   />
 </p>
@@ -216,8 +216,8 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [PostCSS]: https://postcss.org
 [PurgeCSS]: https://purgecss.com
 [Autoprefixer]: https://autoprefixer.github.io
-[Contributing]: https://github.com/hendotcat/11tysass/blob/trunk/contributing.md
-[Code of Conduct]: https://github.com/hendotcat/11tysass/blob/trunk/code_of_conduct.md
-[MIT]: https://github.com/hendotcat/11tysass/blob/trunk/license
-[onInjectInline]: https://github.com/hendotcat/11tysass/blob/trunk/examples/purgecss/.eleventy.js
+[Contributing]: https://github.com/henrycatalinismith/11tysass/blob/trunk/contributing.md
+[Code of Conduct]: https://github.com/henrycatalinismith/11tysass/blob/trunk/code_of_conduct.md
+[MIT]: https://github.com/henrycatalinismith/11tysass/blob/trunk/license
+[onInjectInline]: https://github.com/henrycatalinismith/11tysass/blob/trunk/examples/purgecss/.eleventy.js
 
