@@ -27,7 +27,7 @@ errors_before:
 	rm -f errors/*/error.txt
 
 errors/%/error.txt: errors/%/node_modules
-	- cd errors/$*; yarn eleventy | grep @hendotcat/11tysass | grep -v "  at " | awk '{$$1=""}1' | grep -v "rendered style" > error.txt
+	- cd errors/$*; yarn eleventy | grep @henrycatalinismith/11tysass | grep -v "  at " | awk '{$$1=""}1' | grep -v "rendered style" > error.txt
 	@if [[ `git status --porcelain errors/$*/error.txt` ]]; then \
 		git --no-pager diff errors/$*/error.txt; \
 		git clean -df errors; \

@@ -38,7 +38,7 @@ help you fix it.
 ## Installation
 
 ```
-yarn add -D @hendotcat/11tysass sass
+yarn add -D @henrycatalinismith/11tysass sass
 ```
 
 ## Usage
@@ -50,7 +50,7 @@ cache-busting to guarantee that your visitors will get your updated CSS as soon
 as you deploy it, and it uses Sass's own output compression for minification.
 
 ```javascript
-const { sassPlugin } = require("@hendotcat/11tysass")
+const { sassPlugin } = require("@henrycatalinismith/11tysass")
 
 module.exports = function(eleventyConfig) {
   eleventyConfig.addPlugin(sassPlugin, {
@@ -126,7 +126,7 @@ returns another CSS string. Here's an example using [PostCSS] and
 [Autoprefixer] to post-process the rendered CSS output from Sass.
 
 ```javascript
-const { sassPlugin } = require("@hendotcat/11tysass")
+const { sassPlugin } = require("@henrycatalinismith/11tysass")
 const autoprefixer = require("autoprefixer")
 const postcss = require("postcss")
 

@@ -63,16 +63,16 @@
     "@babel/helper-validator-identifier" "^7.12.11"
     to-fast-properties "^2.0.0"
 
-"@hendotcat/11tyhype@^2.0.0":
+"@henrycatalinismith/11tyhype@^2.0.0":
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@hendotcat/11tyhype/-/11tyhype-2.0.0.tgz#3045ecca879227b0d80497e329321019ddf22a6a"
+  resolved "https://registry.yarnpkg.com/@henrycatalinismith/11tyhype/-/11tyhype-2.0.0.tgz#3045ecca879227b0d80497e329321019ddf22a6a"
   integrity sha512-dE3l3GjuXzRbaCozXdgia1MmkQYbX1KIPx3Y6q1g3ZBv8/oKb3Nv5L1/TH2aA0JAZyQa2RjRYOTqTYBAMEHkfA==
   dependencies:
     eazy-logger "3.1.0"
 
-"@hendotcat/11tyshim@^1.0.0":
+"@henrycatalinismith/11tyshim@^1.0.0":
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@hendotcat/11tyshim/-/11tyshim-1.0.0.tgz#a1e2fd10974a2cc8e1b5d8ad802440c18b27bb97"
+  resolved "https://registry.yarnpkg.com/@henrycatalinismith/11tyshim/-/11tyshim-1.0.0.tgz#a1e2fd10974a2cc8e1b5d8ad802440c18b27bb97"
   integrity sha512-ItZACJy9sAtbKr6mfj8rznk9TzQf4JG5F6hFqRqKI6MGoeX7C9sc7K3C1NCGfq24VLPzvQEoIU7lXk1+JX/QdQ==
   dependencies:
     eazy-logger "3.1.0"

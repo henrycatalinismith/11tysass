@@ -9,8 +9,8 @@ import path from "path"
 import sass from "sass"
 import toHtml from "hast-util-to-html"
 import { selectAll } from "hast-util-select"
-import { shimPlugin } from "@hendotcat/11tyshim"
-import { rehypePlugin } from "@hendotcat/11tyhype"
+import { shimPlugin } from "@henrycatalinismith/11tyshim"
+import { rehypePlugin } from "@henrycatalinismith/11tyhype"
 import { name, version, homepage } from "./package.json"
 
 interface EleventyConfig {

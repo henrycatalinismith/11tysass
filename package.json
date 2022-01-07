@@ -1,5 +1,5 @@
 {
-  "name": "@hendotcat/11tysass",
+  "name": "@henrycatalinismith/11tysass",
   "description": "Sass plugin for 11ty",
   "version": "3.0.1",
   "license": "MIT",
@@ -14,8 +14,8 @@
     "url": "https://github.com/henrycatalinismith/11tysass.git"
   },
   "dependencies": {
-    "@hendotcat/11tyhype": "^2.0.0",
-    "@hendotcat/11tyshim": "^1.0.0",
+    "@henrycatalinismith/11tyhype": "^2.0.0",
+    "@henrycatalinismith/11tyshim": "^1.0.0",
     "chokidar": "^3.5.1",
     "eazy-logger": "3.1.0",
     "fs-extra": "^9.1.0",
