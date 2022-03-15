@@ -1,7 +1,7 @@
 {
   "name": "@henrycatalinismith/11tysass",
   "description": "Sass plugin for 11ty",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "license": "MIT",
   "homepage": "https://github.com/henrycatalinismith/11tysass",
   "author": {
@@ -14,8 +14,8 @@
     "url": "https://github.com/henrycatalinismith/11tysass.git"
   },
   "dependencies": {
-    "@henrycatalinismith/11tyhype": "^2.0.1",
-    "@henrycatalinismith/11tyshim": "^1.0.1",
+    "@henrycatalinismith/11tyhype": "^3.0.0",
+    "@henrycatalinismith/11tyshim": "^3.0.0",
     "chokidar": "^3.5.1",
     "eazy-logger": "3.1.0",
     "fs-extra": "^9.1.0",
@@ -25,7 +25,7 @@
     "rehype": "^11.0.0"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy": "^1.0.0",
     "@types/fs-extra": "^9.0.11",
     "@types/hast": "^2.3.1",
     "@types/lodash.debounce": "^4.0.6",
