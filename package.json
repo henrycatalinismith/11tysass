@@ -1,7 +1,7 @@
 {
   "name": "@henrycatalinismith/11tysass",
   "description": "Sass plugin for 11ty",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "license": "MIT",
   "homepage": "https://github.com/henrycatalinismith/11tysass",
   "author": {
@@ -35,7 +35,7 @@
     "typescript": "^4.2.4"
   },
   "peerDependencies": {
-    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy": "^1.0.0",
     "sass": "^1.32.11"
   },
   "scripts": {
