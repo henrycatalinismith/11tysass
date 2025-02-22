@@ -3,15 +3,15 @@
   "description": "Sass plugin for 11ty",
   "version": "4.0.1",
   "license": "MIT",
-  "homepage": "https://github.com/henrycatalinismith/11tysass",
+  "homepage": "https://codeberg.org/henrycatalinismith/11tysass",
   "author": {
     "name": "Henry Catalini Smith",
     "email": "henry@catalinismith.com",
-    "url": "https://hen.cat/"
+    "url": "https://henry.catalinismith.com/"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/henrycatalinismith/11tysass.git"
+    "url": "https://codeberg.org/henrycatalinismith/11tysass.git"
   },
   "dependencies": {
     "@henrycatalinismith/11tyhype": "^3.0.0",
