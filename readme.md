@@ -1,23 +1,6 @@
-<p align="center">
-  <img
-    alt="11tysass"
-    src="https://github.com/henrycatalinismith/11tysass/raw/trunk/11tysass.svg"
-    height="64"
-  />
-</p>
+# 11tysass
 
-<p align="center">
-  <strong>
-    A Sass plugin for Eleventy that's beginner-friendly and production-ready
-  </strong>
-</p>
-
-<p align="center">
-  <img
-    src="https://github.com/henrycatalinismith/11tysass/actions/workflows/publish.yml/badge.svg"
-    alt="Build status"
-  />
-</p>
+A Sass plugin for Eleventy that's beginner-friendly and production-ready
 
 11tysass is a [Sass] plugin for [Eleventy] that's easy to configure but
 flexible enough for production. Most of the code in this plugin is dedicated to
@@ -216,8 +199,7 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [PostCSS]: https://postcss.org
 [PurgeCSS]: https://purgecss.com
 [Autoprefixer]: https://autoprefixer.github.io
-[Contributing]: https://github.com/henrycatalinismith/11tysass/blob/trunk/contributing.md
-[Code of Conduct]: https://github.com/henrycatalinismith/11tysass/blob/trunk/code_of_conduct.md
-[MIT]: https://github.com/henrycatalinismith/11tysass/blob/trunk/license
-[onInjectInline]: https://github.com/henrycatalinismith/11tysass/blob/trunk/examples/purgecss/.eleventy.js
-
+[Contributing]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/contributing.md
+[Code of Conduct]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/code_of_conduct.md
+[MIT]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/license
+[onInjectInline]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/examples/purgecss/.eleventy.js
