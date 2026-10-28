@@ -198,6 +198,6 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [PostCSS]: https://postcss.org
 [PurgeCSS]: https://purgecss.com
 [Autoprefixer]: https://autoprefixer.github.io
-[Contributing]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/contributing.md
+[Contributing]: https://github.com/henrycatalinismith/11tysass/blob/main/contributing.md
 [MIT]: https://github.com/henrycatalinismith/11tysass/blob/main/license
-[onInjectInline]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/examples/purgecss/.eleventy.js
+[onInjectInline]: https://github.com/henrycatalinismith/11tysass/blob/main/examples/purgecss/.eleventy.js
