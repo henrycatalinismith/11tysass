@@ -183,7 +183,6 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 ## Contributing
 
 * [Tips][Contributing]
-* [Code of Conduct]
 
 ## License
 
@@ -200,6 +199,5 @@ your own Sass code. Try to use the error messages from Sass to fix them.
 [PurgeCSS]: https://purgecss.com
 [Autoprefixer]: https://autoprefixer.github.io
 [Contributing]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/contributing.md
-[Code of Conduct]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/code_of_conduct.md
-[MIT]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/license
+[MIT]: https://github.com/henrycatalinismith/11tysass/blob/main/license
 [onInjectInline]: https://codeberg.org/henrycatalinismith/11tysass/src/branch/main/examples/purgecss/.eleventy.js
